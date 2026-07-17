@@ -31,6 +31,9 @@ const redirectRoutes = require('./routes/redirectRoutes');
 const app = express();
 const PORT = process.env.PORT || 5050;
 
+// Trust the reverse proxy (Render) to properly capture client IPs for rate limiting
+app.set('trust proxy', 1);
+
 const passport = require('passport');
 require('./config/passport');
 
