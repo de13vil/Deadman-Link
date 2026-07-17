@@ -3,7 +3,7 @@ import axios from 'axios';
 
 // Prefer env, fall back to localhost:5050/api
 const API_URL =
-  import.meta.env.VITE_API_URL || 'http://localhost:5050/api';
+  import.meta.env.VITE_API_URL || 'https://deadman-link.onrender.com/api';
 
 console.log('[Deadman-Link] API_URL =', API_URL);
 

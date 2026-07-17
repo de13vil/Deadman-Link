@@ -213,7 +213,7 @@ const AdminRegister = () => {
 
             <button
               type="button"
-              onClick={() => window.location.href = `${import.meta.env.VITE_API_URL || 'http://localhost:5050/api'}/auth/google/admin`}
+              onClick={() => window.location.href = `${import.meta.env.VITE_API_URL || 'https://deadman-link.onrender.com/api'}/auth/google/admin`}
               className="w-full flex items-center justify-center gap-2 px-4 py-2.5 border border-red-900/50 rounded-lg text-sm text-red-400 hover:bg-red-950/30 hover:border-red-700/50 transition-colors font-mono"
             >
               <svg className="w-5 h-5" viewBox="0 0 24 24">
