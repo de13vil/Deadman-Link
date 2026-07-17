@@ -356,7 +356,7 @@ router.get('/me', authenticate, async (req, res) => {
 const passport = require('passport');
 require('../config/passport'); // Initialize passport strategies
 
-const FRONTEND_URL = process.env.FRONTEND_URL || 'https://deadman-link-main.vercel.app';
+const FRONTEND_URL = process.env.FRONTEND_URL || 'http://localhost:5173';
 
 // Google OAuth - Login only (check if user exists)
 router.get('/google/login', passport.authenticate('google', { scope: ['profile', 'email'], session: false, state: 'login' }));

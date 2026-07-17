@@ -186,7 +186,7 @@ const Register = () => {
 
             <button
               type="button"
-              onClick={() => window.location.href = `${import.meta.env.VITE_API_URL || 'https://deadman-link.onrender.com/api'}/auth/google/register`}
+              onClick={() => window.location.href = `${import.meta.env.VITE_API_URL || 'http://localhost:5050/api'}/auth/google/register`}
               className="w-full flex items-center justify-center gap-3 px-4 py-3 border border-slate-600/50 rounded-xl text-sm text-slate-300 hover:bg-slate-800/50 hover:border-slate-500 transition-all duration-300 backdrop-blur-sm group"
             >
               <svg className="w-5 h-5" viewBox="0 0 24 24">
