@@ -31,7 +31,7 @@ function signToken(user) {
 // POST /api/auth/register/initiate { name, email, password, role? }
 router.post('/register/initiate', async (req, res) => {
 	try {
-		const { name, email, password, role } = req.body;
+		const { name, email, password, role, adminSecurityKey } = req.body;
 
 		if (!name || !email || !password) {
 			return res.status(400).json({ message: 'All fields required' });
@@ -41,6 +41,14 @@ router.post('/register/initiate', async (req, res) => {
 			return res
 				.status(400)
 				.json({ message: 'Password must be at least 6 characters' });
+		}
+
+		// Security: Validate ADMIN_SECURITY_KEY if registering as admin
+		const userRole = (role === 'admin' || role === 'regular') ? role : 'regular';
+		if (userRole === 'admin') {
+			if (!adminSecurityKey || adminSecurityKey !== process.env.ADMIN_SECURITY_KEY) {
+				return res.status(403).json({ message: 'Invalid Admin Security Key. Access denied.' });
+			}
 		}
 
 		const existing = await User.findOne({ email });

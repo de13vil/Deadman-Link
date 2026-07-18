@@ -139,7 +139,7 @@ const AdminLogin = () => {
 
           <div>
             <label className="block text-xs font-mono text-red-400/80 mb-2 uppercase tracking-wider">
-              Access Key
+              Account Password
             </label>
             <Input
               type="password"

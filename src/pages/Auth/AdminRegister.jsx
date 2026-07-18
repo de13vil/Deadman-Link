@@ -9,7 +9,7 @@ import toast from 'react-hot-toast';
 import api from '../../services/api';
 
 const AdminRegister = () => {
-  const [formData, setFormData] = useState({ name: '', email: '', password: '' });
+  const [formData, setFormData] = useState({ name: '', email: '', password: '', adminSecurityKey: '' });
   const [code, setCode] = useState('');
   const [stage, setStage] = useState('form'); // form -> otp
   const [loading, setLoading] = useState(false);
@@ -34,7 +34,7 @@ const AdminRegister = () => {
     e.preventDefault();
     setErrorMessage(''); // Clear previous errors
 
-    if (!formData.name || !formData.email || !formData.password) {
+    if (!formData.name || !formData.email || !formData.password || !formData.adminSecurityKey) {
       const message = '⚠️ All fields required for clearance';
       setErrorMessage(message);
       toast.error('All fields required for clearance');
@@ -182,7 +182,7 @@ const AdminRegister = () => {
 
             <div>
               <label className="block text-xs font-mono text-red-400/80 mb-2 uppercase tracking-wider">
-                Access Key (Min 8 chars)
+                Create Account Password (Min 8 chars)
               </label>
               <Input
                 type="password"
@@ -194,10 +194,24 @@ const AdminRegister = () => {
               />
             </div>
 
+            <div>
+              <label className="block text-xs font-mono text-red-400/80 mb-2 uppercase tracking-wider">
+                Admin Security Key
+              </label>
+              <Input
+                type="password"
+                placeholder="System Level Clearance Key"
+                value={formData.adminSecurityKey}
+                onChange={(e) => setFormData({ ...formData, adminSecurityKey: e.target.value })}
+                className="font-mono bg-red-950/20 border-red-500/50 text-red-100 placeholder:text-red-900/50 focus:border-red-500"
+                required
+              />
+            </div>
+
             <Button 
               type="submit" 
               isLoading={loading}
-              className="w-full bg-red-600 hover:bg-red-700 text-white font-mono uppercase tracking-wider"
+              className="w-full bg-red-600 hover:bg-red-700 text-white font-mono uppercase tracking-wider mt-6"
             >
               {loading ? 'Requesting...' : 'Request Clearance'}
             </Button>
