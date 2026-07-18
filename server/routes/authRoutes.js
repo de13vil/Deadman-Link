@@ -61,8 +61,6 @@ router.post('/register/initiate', async (req, res) => {
 
 		const passwordHash = await bcrypt.hash(password, 10);
 
-		// Validate role if provided
-		const userRole = (role === 'admin' || role === 'regular') ? role : 'regular';
 
 		await OTP.deleteMany({ email, purpose: 'register' });
 		await OTP.create({
