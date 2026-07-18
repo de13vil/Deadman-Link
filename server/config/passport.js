@@ -65,18 +65,13 @@ if (GOOGLE_CLIENT_ID && GOOGLE_CLIENT_SECRET) {
             return done(null, user);
           }
 
-          // ADMIN FLOW: Login if exists, create with admin role if not
+          // ADMIN FLOW: Login if exists (NO AUTOMATIC CREATION)
           if (state === 'admin') {
             if (!user) {
-              user = await User.create({
-                name: fallbackName,
-                email,
-                authProvider: 'google',
-                providerId: profile.id,
-                password: null,
-                role: 'admin',
-              });
+              console.log('❌ No account found for admin login');
+              return done(null, false, { message: 'no_account' });
             } else if (user.role !== 'admin') {
+              console.log('❌ Account exists but is not admin');
               return done(null, false, { message: 'not_admin' });
             }
             if (!user.name) {
