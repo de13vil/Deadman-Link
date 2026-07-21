@@ -48,6 +48,32 @@
 
 Deadman-Link is built on a robust decoupled architecture, separating the client presentation layer from the API and WebSocket services.
 
+```mermaid
+graph TD
+    %% Define Styles
+    classDef client fill:#0ea5e9,stroke:#0284c7,stroke-width:2px,color:#fff,rx:10,ry:10
+    classDef server fill:#10b981,stroke:#059669,stroke-width:2px,color:#fff,rx:10,ry:10
+    classDef db fill:#f59e0b,stroke:#d97706,stroke-width:2px,color:#fff,rx:10,ry:10
+    classDef external fill:#8b5cf6,stroke:#7c3aed,stroke-width:2px,color:#fff,rx:10,ry:10
+
+    %% Nodes
+    Client["💻 Frontend Client<br/>(React 19, Vite, Tailwind)"]:::client
+    API["⚙️ Node.js REST API<br/>(Express, Passport)"]:::server
+    Socket["⚡ Real-Time Engine<br/>(Socket.io)"]:::server
+    DB[("🗄️ Database<br/>(MongoDB)")]:::db
+    GoogleAuth["🔐 Google OAuth 2.0<br/>(SSO)"]:::external
+    GeminiAI["🧠 Google Gemini AI<br/>(Insights)"]:::external
+
+    %% Connections
+    Client -- "HTTP/REST<br/>(Links, Analytics)" --> API
+    Client -- "WebSocket<br/>(Device Sync, Watch Parties)" --> Socket
+    API -- "Mongoose Schema<br/>(CRUD)" --> DB
+    Socket -- "Real-time State" --> DB
+    
+    API -- "Authentication" --> GoogleAuth
+    API -- "Context Analysis" --> GeminiAI
+```
+
 * **Frontend (Client):** A blazing-fast Single Page Application (SPA) built with React 19 and Vite. State is managed via React Hooks, with routing handled by React Router. Tailwind CSS provides a highly responsive, utility-first design system.
 * **Backend (API Server):** A stateless Node.js / Express.js REST API. It handles data validation, business logic, authentication (Passport.js), and communicates with the database.
 * **Real-Time Engine:** A standalone Socket.io server integrated within the Node instance, handling multiplexed, bidirectional event streaming for Watch Parties and Device Syncing.
