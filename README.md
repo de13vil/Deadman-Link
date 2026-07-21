@@ -176,6 +176,4 @@ Deadman-Link is container-ready and optimized for modern cloud PaaS providers.
 6. Deploy.
 
 ---
-<div align="center">
-  <em>Developed by Divyansh Meena</em>
-</div>
+
